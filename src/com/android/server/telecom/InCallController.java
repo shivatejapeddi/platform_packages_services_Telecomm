@@ -31,6 +31,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.os.Trace;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telecom.CallAudioState;
@@ -744,6 +745,7 @@ public class InCallController extends CallsManagerListenerBase {
     private final EmergencyCallHelper mEmergencyCallHelper;
     private CarSwappingInCallServiceConnection mInCallServiceConnection;
     private NonUIInCallServiceConnectionCollection mNonUIInCallServiceConnections;
+    private static final String CDLA_SYSTEM_PROPERTY = "cdla.power.profile";
 
     public InCallController(Context context, TelecomSystem.SyncRoot lock, CallsManager callsManager,
             SystemStateProvider systemStateProvider,
@@ -925,6 +927,11 @@ public class InCallController extends CallsManagerListenerBase {
             AEXUtils.vibratePattern(mContext, INCALL_VIBRATION_PATTERN);
         }
         updateCall(call);
+               if (oldState == CallState.DIALING && newState == CallState.ACTIVE){
+        SystemProperties.set(CDLA_SYSTEM_PROPERTY,Integer.toString(1));
+      }
+         else if (oldState == CallState.ACTIVE && newState == CallState.DISCONNECTED) {
+       SystemProperties.set(CDLA_SYSTEM_PROPERTY,Integer.toString(0));};
     }
 
     @Override
