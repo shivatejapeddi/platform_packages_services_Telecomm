@@ -923,7 +923,7 @@ public class InCallController extends CallsManagerListenerBase {
             vibrate(100, 200, 0);
         } else if (oldState == CallState.ACTIVE && newState == CallState.DISCONNECTED
                 && vibrateOnDisconnect) {
-            vibrate(50, 100, 50);
+            vibrate(100, 200, 0);
         }
         updateCall(call);
     }
