@@ -1603,11 +1603,7 @@ public class CallsManager extends Call.ListenerBase
                                     : phoneAccountHandle.toString());
 
                     boolean isVoicemail = isVoicemail(callToUse.getHandle(), accountToUse);
-
-<<<<<<< HEAD
                     boolean isRttSettingOn = isRttSettingOn(phoneAccountHandle);
-                    if (!isVoicemail && (isRttSettingOn || (extras != null
-=======
                     int phoneId = SubscriptionManager.getPhoneId(
                             mPhoneAccountRegistrar.getSubscriptionIdForPhoneAccount(
                             callToUse.getTargetPhoneAccount()));
@@ -1615,7 +1611,6 @@ public class CallsManager extends Call.ListenerBase
                             || QtiImsExtUtils.isRttSupportedOnVtCalls(
                             phoneId, mContext))
                             && (isRttSettingOn() || (extras != null
->>>>>>> 436248071bd69f147c8c032a45fe29abb7961d44
                             && extras.getBoolean(TelecomManager.EXTRA_START_CALL_WITH_RTT,
                             false)))) {
                         Log.d(this, "Outgoing call requesting RTT, rtt setting is %b",
